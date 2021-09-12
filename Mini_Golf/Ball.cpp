@@ -20,13 +20,10 @@ void Ball::setLaunchVelocity(sf::Vector2i mouse)
 {
 	launchVelocity.x = initialMousePos.x - mouse.x;
 	launchVelocity.y = initialMousePos.y - mouse.y;
-	//std::cout << launchVelocity.x << " " << launchVelocity.y << std::endl;
 }
 
 void Ball::setBallVelocity(sf::Vector2i mouse)
 {
-	//velocity.x = initialMousePos.x - mouse.x;
-	//velocity.y = initialMousePos.y - mouse.y;
 	velocity = launchVelocity;
 }
 
@@ -43,7 +40,7 @@ bool Ball::ballNotMoving(void)
 	return false;
 }
 
-void Ball::update(float dt, sf::Vector2u app_size, bool &init_set)
+void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &hole, int &currentLevel)
 {
 	if (!launched) { //if ball is not launched and moving
 		velocity = launchVelocity;
@@ -53,7 +50,7 @@ void Ball::update(float dt, sf::Vector2u app_size, bool &init_set)
 	}
 
 	//if ball is launched the update ball velocity
-	float f = 0.998;
+	float f = 0.996;
 	float x = ball.getPosition().x + velocity.x*dt*10;
 	float y = ball.getPosition().y + velocity.y*dt*10;
 
@@ -72,6 +69,11 @@ void Ball::update(float dt, sf::Vector2u app_size, bool &init_set)
 		velocity.y = -velocity.y;
 		y = 0;
 	}
+
+	if (x >= hole.getPosition().x - 5 && x <= hole.getPosition().x + hole.getGlobalBounds().width + 5 &&
+		y >= hole.getPosition().y - 5 && y <= hole.getPosition().y + hole.getGlobalBounds().height + 5) {
+		loadLevel(currentLevel++, hole);
+	}
 		
 	velocity.x = velocity.x * f;
 	velocity.y = velocity.y * f;
@@ -79,8 +81,7 @@ void Ball::update(float dt, sf::Vector2u app_size, bool &init_set)
 	if (abs(int(velocity.x)) == 0 && abs(int(velocity.y)) == 0) {
 		velocity = sf::Vector2f(0.f, 0.f);
 		launched = false;
-		init_set = true;
+		*init_set = true;
 	}
-	//std::cout << velocity.x << " " << velocity.y << std::endl;
 	ball.setPosition(x, y);
 }

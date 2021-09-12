@@ -1,7 +1,6 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <iostream>
 #include <math.h>
+#include "Level.h"
 
 class Ball
 {
@@ -21,6 +20,6 @@ public:
 	void setLaunchVelocity(sf::Vector2i mouse);
 	bool mouseOnBall(sf::Vector2i mouse);
 	bool ballNotMoving(void);
-	void update(float dt, sf::Vector2u app_size, bool &init_set);
+	void update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &hole, int &currentLevel);
 };
 

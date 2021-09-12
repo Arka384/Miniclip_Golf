@@ -1,21 +1,25 @@
-#include <SFML/Graphics.hpp>
 #include "Ball.hpp"
-#include <iostream>
 
 int main()
 {
 	sf::Vector2u app_size(1280, 720);
 	sf::RenderWindow app(sf::VideoMode(app_size.x, app_size.y), "Mini Golf", sf::Style::Close);
 	sf::Vector2i mousepos;
-	bool mousePressed = false, init_set = true;
+	bool mousePressed = false;
 	sf::Clock clk;
 	sf::Time time;
 	float dt = 0;
 
-	sf::Sprite bg;
-	sf::Texture bg_tex;
+	sf::Sprite bg, hole;
+	sf::Texture bg_tex, hole_tex;
 	bg_tex.loadFromFile("Resources/sprites/bg.png");
 	bg.setTexture(bg_tex);
+	hole_tex.loadFromFile("Resources/sprites/hole.png");
+	hole.setTexture(hole_tex);
+	hole.setScale(2, 2);
+	bool init_set = true, levelComplete = false;
+	int currentLevel = 1, maxStrokes = 5, currentStrokes = maxStrokes;
+	loadLevel(currentLevel, hole);
 
 	Ball golfBall;
 	golfBall.init(app_size);
@@ -55,7 +59,7 @@ int main()
 			golfBall.setLaunchVelocity(mousepos);
 		}
 		else	//launch the ball and update
-			golfBall.update(dt, app_size, init_set);
+			golfBall.update(dt, app_size, &init_set, hole, currentLevel);
 
 
 		///////////////////////
@@ -63,6 +67,7 @@ int main()
 		app.clear();
 
 		app.draw(bg);
+		app.draw(hole);
 		app.draw(golfBall.ball_sprite);
 
 		app.display();

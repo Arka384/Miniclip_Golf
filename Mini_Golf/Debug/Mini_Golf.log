@@ -1,2 +1,28 @@
-﻿  main.cpp
+﻿  Ball.cpp
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.cpp(10): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.cpp(15): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.cpp(16): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.cpp(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+  main.cpp
+  Generating Code...
   Mini_Golf.vcxproj -> C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Mini_Golf\Debug\Mini_Golf.exe
