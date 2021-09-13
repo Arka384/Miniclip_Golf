@@ -40,7 +40,7 @@ bool Ball::ballNotMoving(void)
 	return false;
 }
 
-void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &hole, int &currentLevel)
+void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &hole, bool *level_complete, std::vector<sf::Sprite> blocks)
 {
 	if (!launched) { //if ball is not launched and moving
 		velocity = launchVelocity;
@@ -50,10 +50,10 @@ void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &h
 	}
 
 	//if ball is launched the update ball velocity
-	float f = 0.996;
 	float x = ball.getPosition().x + velocity.x*dt*10;
 	float y = ball.getPosition().y + velocity.y*dt*10;
-
+	
+	//collision with walls
 	if (x >= app_size.x - size*2) {
 		velocity.x = -velocity.x;
 		x = app_size.x - size*2;
@@ -61,7 +61,6 @@ void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &h
 		velocity.x = -velocity.x;
 		x = 0;
 	}
-		
 	if (y >= app_size.y - size*2) {
 		velocity.y = -velocity.y;
 		y = app_size.y - size*2;
@@ -70,11 +69,19 @@ void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &h
 		y = 0;
 	}
 
-	if (x >= hole.getPosition().x - 5 && x <= hole.getPosition().x + hole.getGlobalBounds().width + 5 &&
-		y >= hole.getPosition().y - 5 && y <= hole.getPosition().y + hole.getGlobalBounds().height + 5) {
-		loadLevel(currentLevel++, hole);
+	//collision with blocks or tiles
+	for (int i = 0; i < blocks.size(); i++) {
+		float nx = x + velocity.x * dt;
+		if (nx + size*2 >= blocks[i].getPosition().x && nx <= blocks[i].getPosition().x + blocks[i].getGlobalBounds().width &
+			y + size * 2 >= blocks[i].getPosition().y && y <= blocks[i].getPosition().y + blocks[i].getGlobalBounds().height)
+			velocity.x = velocity.x * -1;
+		float ny = y + velocity.y * dt;
+		if (x + size * 2 >= blocks[i].getPosition().x && x <= blocks[i].getPosition().x + blocks[i].getGlobalBounds().width &
+			ny + size * 2 >= blocks[i].getPosition().y && ny <= blocks[i].getPosition().y + blocks[i].getGlobalBounds().height)
+			velocity.y = velocity.y * -1;
 	}
-		
+
+	
 	velocity.x = velocity.x * f;
 	velocity.y = velocity.y * f;
 	
@@ -84,4 +91,14 @@ void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &h
 		*init_set = true;
 	}
 	ball.setPosition(x, y);
+
+	if (x >= hole.getPosition().x - 5 && x <= hole.getPosition().x + hole.getGlobalBounds().width + 5 &&
+		y >= hole.getPosition().y - 5 && y <= hole.getPosition().y + hole.getGlobalBounds().height + 5) {
+		if (!*level_complete) {
+			velocity = sf::Vector2f(0.f, 0.f);
+			ball.setPosition(100, app_size.y / 2);
+			*level_complete = true;
+			return;
+		}
+	}
 }

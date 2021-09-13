@@ -1,4 +1,5 @@
 ﻿  Ball.cpp
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.hpp(10): warning C4305: 'initializing': truncation from 'double' to 'float'
 c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.cpp(10): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
@@ -22,7 +23,17 @@ c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_g
           [
               T=float
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.cpp(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.cpp(73): warning C4018: '<': signed/unsigned mismatch
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.cpp(76): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.cpp(80): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.cpp(99): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
   main.cpp
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.hpp(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(87): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
   Mini_Golf.vcxproj -> C:\Users\arkad\Documents\DEADSHOT FILES\C++ Programs\SFML\TESTS\Mini_Golf\Debug\Mini_Golf.exe
