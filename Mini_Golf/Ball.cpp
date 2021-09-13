@@ -2,12 +2,27 @@
 
 void Ball::init(sf::Vector2u app_size)
 {
+	meter_bg_tex.loadFromFile("Resources/sprites/powermeter_bg.png");
+	meter_bg.setTexture(meter_bg_tex);
+	meter_bg.setScale(2, 1.2);
+	meter_bg.setPosition(180, app_size.y + 12);
+
+	meter_fg_tex.loadFromFile("Resources/sprites/powermeter_fg.png");
+	meter_fg.setTexture(meter_fg_tex);
+	meter_fg.setScale(2, 1.2);
+	meter_fg.setPosition(188, app_size.y + 16);
+
+	meter_ov_tex.loadFromFile("Resources/sprites/powermeter_overlay.png");
+	meter_ov.setTexture(meter_ov_tex);
+	meter_ov.setScale(2, 1.2);
+	meter_ov.setPosition(180, app_size.y + 12);
+
 	ball_tex.loadFromFile("Resources/sprites/ball.png");
 	ball_sprite.setTexture(ball_tex);
 	ball_sprite.setScale(2, 2);
 	ball.setRadius(size);
 	ball.setFillColor(sf::Color::White);
-	ball.setPosition(100, app_size.y / 2);
+	ball.setPosition(200, app_size.y / 2);
 }
 
 void Ball::setInitialPos(sf::Vector2i pos)
@@ -18,8 +33,16 @@ void Ball::setInitialPos(sf::Vector2i pos)
 
 void Ball::setLaunchVelocity(sf::Vector2i mouse)
 {
+	stroked = false;
 	launchVelocity.x = initialMousePos.x - mouse.x;
 	launchVelocity.y = initialMousePos.y - mouse.y;
+	abs_velocity = sqrt(pow(launchVelocity.x, 2) + pow(launchVelocity.y, 2));
+	if (abs_velocity > 420) {
+		launchVelocity = copy_velocity;
+		return;
+	}
+	copy_velocity = launchVelocity;
+	meter_fg.setScale(abs_velocity/200, 1.2);
 }
 
 void Ball::setBallVelocity(sf::Vector2i mouse)
@@ -40,11 +63,18 @@ bool Ball::ballNotMoving(void)
 	return false;
 }
 
-void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &hole, bool *level_complete, std::vector<sf::Sprite> blocks)
+void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &hole, bool *level_complete, std::vector<sf::Sprite> blocks, int &currStrokes)
 {
+	if (!stroked) {	//initially true
+		currStrokes--;
+		stroked = true;
+	}
+
 	if (!launched) { //if ball is not launched and moving
 		velocity = launchVelocity;
 		launchVelocity = sf::Vector2f(0.f, 0.f);
+		abs_velocity = 0;
+		meter_fg.setScale(abs_velocity / 200, 1.2);
 		launched = true;
 		return;
 	}
@@ -101,4 +131,12 @@ void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &h
 			return;
 		}
 	}
+}
+
+void Ball::renderBall(sf::RenderWindow & app)
+{
+	app.draw(ball_sprite);
+	app.draw(meter_bg);
+	app.draw(meter_fg);
+	app.draw(meter_ov);
 }
