@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf</FILEPATH>
+      <FILENAME>ball.cpp</FILENAME>
+      <LINE>119</LINE>
+      <COLUMN>16</COLUMN>
+    </SFA>
+    <DEFECTCODE>6281</DEFECTCODE>
+    <DESCRIPTION>Incorrect order of operations:  relational operators have higher precedence than bitwise operators.</DESCRIPTION>
+    <FUNCTION>Ball::update</FUNCTION>
+    <DECORATED>?update@Ball@@QAEXMV?$Vector2@I@sf@@PA_NAAVSprite@3@1V?$vector@VSprite@sf@@V?$allocator@VSprite@sf@@@std@@@std@@AAH@Z</DECORATED>
+    <FUNCLINE>79</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf</FILEPATH>
+      <FILENAME>ball.cpp</FILENAME>
+      <LINE>118</LINE>
+      <COLUMN>53</COLUMN>
+    </SFA>
+    <DEFECTCODE>6281</DEFECTCODE>
+    <DESCRIPTION>Incorrect order of operations:  relational operators have higher precedence than bitwise operators.</DESCRIPTION>
+    <FUNCTION>Ball::update</FUNCTION>
+    <DECORATED>?update@Ball@@QAEXMV?$Vector2@I@sf@@PA_NAAVSprite@3@1V?$vector@VSprite@sf@@V?$allocator@VSprite@sf@@@std@@@std@@AAH@Z</DECORATED>
+    <FUNCLINE>79</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf</FILEPATH>
+      <FILENAME>ball.cpp</FILENAME>
+      <LINE>123</LINE>
+      <COLUMN>17</COLUMN>
+    </SFA>
+    <DEFECTCODE>6281</DEFECTCODE>
+    <DESCRIPTION>Incorrect order of operations:  relational operators have higher precedence than bitwise operators.</DESCRIPTION>
+    <FUNCTION>Ball::update</FUNCTION>
+    <DECORATED>?update@Ball@@QAEXMV?$Vector2@I@sf@@PA_NAAVSprite@3@1V?$vector@VSprite@sf@@V?$allocator@VSprite@sf@@@std@@@std@@AAH@Z</DECORATED>
+    <FUNCLINE>79</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf</FILEPATH>
+      <FILENAME>ball.cpp</FILENAME>
+      <LINE>122</LINE>
+      <COLUMN>53</COLUMN>
+    </SFA>
+    <DEFECTCODE>6281</DEFECTCODE>
+    <DESCRIPTION>Incorrect order of operations:  relational operators have higher precedence than bitwise operators.</DESCRIPTION>
+    <FUNCTION>Ball::update</FUNCTION>
+    <DECORATED>?update@Ball@@QAEXMV?$Vector2@I@sf@@PA_NAAVSprite@3@1V?$vector@VSprite@sf@@V?$allocator@VSprite@sf@@@std@@@std@@AAH@Z</DECORATED>
+    <FUNCLINE>79</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT></DEFECTS>

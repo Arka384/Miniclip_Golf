@@ -6,7 +6,7 @@ sf::Sprite tiles32[2], tiles64[2];
 sf::Texture tiles[4];
 std::vector<sf::Sprite> blocks;
 
-void loadLevel(int &currentLevel, sf::Sprite &hole, int &currentStrokes);
+void loadLevel(int &currentLevel, sf::Sprite &hole, int &currentStrokes, Ball &b, sf::Vector2u app_size, int maxStrokes);
 void loadTiles(void);
 
 int main()
@@ -18,28 +18,24 @@ int main()
 	bool mousePressed = false;
 	sf::Clock clk;
 	sf::Time time;
-	float dt = 0;
+	float dt = 0, levelEndTimer = 0;
 
-	sf::Sprite bg, hole, ui_bg;
-	sf::Texture bg_tex, hole_tex, ui_bg_tex;
-	bg_tex.loadFromFile("Resources/sprites/bg.png");
-	bg.setTexture(bg_tex);
+	sf::Sprite hole;
+	sf::Texture hole_tex;
 	hole_tex.loadFromFile("Resources/sprites/hole.png");
 	hole.setTexture(hole_tex);
 	hole.setScale(2, 2);
-	ui_bg_tex.loadFromFile("Resources/sprites/ui_bg.png");
-	ui_bg.setTexture(ui_bg_tex);
-	ui_bg.setPosition(0, app_size.y);
 	bool init_set = true, levelComplete = false;
-	int currentLevel = 1, currentStrokes = 5;
-	//level
-	loadTiles();
-	loadLevel(currentLevel, hole, currentStrokes);
-	//ui
-	loadUi(app_size);
+	int currentLevel = 1, maxStrokes = 2, currentStrokes = maxStrokes;
 
 	Ball golfBall;
 	golfBall.init(app_size);
+
+	//level
+	loadTiles();
+	loadLevel(currentLevel, hole, currentStrokes, golfBall, app_size, maxStrokes);
+	//ui
+	loadUi(app_size);
 
 	while (app.isOpen())
 	{
@@ -55,6 +51,10 @@ int main()
 				app.close();
 			case sf::Event::MouseButtonPressed:
 				mousePressed = true;
+				if (start_state) {
+					start_state = false;
+					currentStrokes = maxStrokes + 1;
+				}
 				break;
 			case sf::Event::MouseButtonReleased:
 				mousePressed = false;
@@ -65,74 +65,117 @@ int main()
 		}
 
 		////////////////////////
-		mousepos = sf::Mouse::getPosition(app);
-		golfBall.ball_sprite.setPosition(golfBall.ball.getPosition());
+		if (!start_state && !finished_state) 
+		{
+			//std::cout << golfBall.test << "\n";
+			mousepos = sf::Mouse::getPosition(app);
+			golfBall.ball_sprite.setPosition(golfBall.ball.getPosition());
 
-		std::stringstream strokes;
-		strokes << currentStrokes;
-		strokesLeft.setString(strokes.str());
+			std::stringstream strokes, level;
+			strokes << currentStrokes;
+			strokesLeft.setString(strokes.str());
+			level << currentLevel;
+			currLevel.setString(level.str());
 
-		if (levelComplete) {
-			levelComplete = false;
-			currentLevel++;
-			loadLevel(currentLevel, hole, currentStrokes);
+			if (levelComplete) {
+				blocks.clear();	//clearing the tiles
+				levelEndTimer += dt;
+				if (levelEndTimer > 4)
+				{
+					levelComplete = false;
+					levelEndTimer = 0;
+					currentLevel++;
+					loadLevel(currentLevel, hole, currentStrokes, golfBall, app_size, maxStrokes);
+				}
+			}
+			//else if (currentStrokes == 0) {
+			else if(golfBall.trigger && golfBall.ballNotMoving()){
+				blocks.clear();	//clearing the tiles 
+				levelEndTimer += dt;
+				if (levelEndTimer > 4) {
+					levelEndTimer = 0;
+					loadLevel(currentLevel, hole, currentStrokes, golfBall, app_size, maxStrokes);
+				}
+			}
+			else if (!levelComplete) {
+				if (mousePressed && init_set) {	//setting initial mouse pos
+					golfBall.setInitialPos(mousepos);
+					init_set = false;
+				}
+				else if (mousePressed && golfBall.ballNotMoving()) {
+					golfBall.setLaunchVelocity(mousepos);
+				}
+				else	//launch the ball and collision detections
+					golfBall.update(dt, app_size, &init_set, hole, &levelComplete, blocks, currentStrokes);
+			}
 		}
-		if (currentStrokes == 0) {
-			loadLevel(currentLevel, hole, currentStrokes);
-		}
-
-		if (mousePressed && init_set) {	//setting initial mouse pos
-			golfBall.setInitialPos(mousepos);
-			init_set = false;
-		}
-		else if (mousePressed && golfBall.ballNotMoving()) {
-			golfBall.setLaunchVelocity(mousepos);
-		}
-		else	//launch the ball and collision detections
-			golfBall.update(dt, app_size, &init_set, hole, &levelComplete, blocks, currentStrokes);
-
 
 		///////////////////////
 
 		app.clear();
 
-		app.draw(ui_bg);
-		app.draw(bg);
-		renderUi(app);
-		app.draw(hole);
-		for (int i = 0; i < blocks.size(); i++)
-			app.draw(blocks[i]);
-		golfBall.renderBall(app);
+		if (!start_state && !finished_state) {
+			app.draw(ui_bg);
+			app.draw(bg);
+			app.draw(hole);
+			for (int i = 0; i < blocks.size(); i++)
+				app.draw(blocks[i]);
+			golfBall.renderBall(app);
+		}
+		renderUi(app, levelComplete, currentStrokes, golfBall);
 
 		app.display();
 	}
 }
 
-void loadLevel(int &currentLevel, sf::Sprite &hole, int &currentStrokes)
+void loadLevel(int &currentLevel, sf::Sprite &hole, int &currentStrokes, Ball &b, sf::Vector2u app_size, int maxStrokes)
 {
 	int i = 0;
 	hole.setPosition(1000, 350);
+	b.trigger = false;
 	switch (currentLevel)
 	{
 	case 1:
-		currentStrokes = 5;
+		currentStrokes = maxStrokes;
 		hole.setPosition(1000, 350);
 		break;
 	case 2:
-		currentStrokes = 5;
-		//hole.setPosition(1000, 350);
+		currentStrokes = maxStrokes;
+		b.ball.setPosition(200, app_size.y / 2);
 		i = rand() % 2;
 		tiles64[i].setPosition(640 - 32, 360 - 32);
 		blocks.push_back(tiles64[i]);
 		break;
 	case 3:
-		blocks.clear();
-		currentStrokes = 5;
+		currentStrokes = maxStrokes;
+		b.ball.setPosition(200, app_size.y / 2);
 		i = rand() % 2;
-		tiles64[i].setPosition(900 - 32, 370 - 32);
+		tiles64[i].setPosition(app_size.x / 2 - 32, app_size.y / 4 - 32);
 		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x / 2 - 32, app_size.y - app_size.y / 4 - 32);
+		blocks.push_back(tiles64[i]);
+		i = rand() % 2;
+		tiles32[i].setPosition(app_size.x / 2 - 16, app_size.y / 2 - 16);
+		blocks.push_back(tiles32[i]);
+		break;
+	case 4:
+		currentStrokes = maxStrokes;
+		b.ball.setPosition(200, app_size.y / 2);
+		i = rand() % 2;
+		tiles64[i].setPosition(app_size.x / 4 - 32, 100);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x - app_size.x / 4 - 32, app_size.y - (100 + 40));
+		blocks.push_back(tiles64[i]);
+		/*
+		i = rand() % 2;
+		tiles32[i].setPosition(app_size.x / 4 - 16, app_size.y / 2 - 10);
+		blocks.push_back(tiles32[i]);
+		tiles32[i].setPosition(app_size.x - app_size.x / 4 - 16, app_size.y / 2 - 10);
+		blocks.push_back(tiles32[i]);
+		*/
 		break;
 	default:
+		finished_state = true;
 		break;
 	}
 }

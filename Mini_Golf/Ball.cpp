@@ -23,6 +23,12 @@ void Ball::init(sf::Vector2u app_size)
 	ball.setRadius(size);
 	ball.setFillColor(sf::Color::White);
 	ball.setPosition(200, app_size.y / 2);
+
+	pointer_tex.loadFromFile("Resources/sprites/point.png");
+	pointer.setTexture(pointer_tex);
+	pointer.setScale(2, 1.2);
+	pointer.setOrigin(pointer.getGlobalBounds().left, pointer.getGlobalBounds().height / 2);
+	//pointer.setPosition(ball.getPosition().x + size, ball.getPosition().y + size);
 }
 
 void Ball::setInitialPos(sf::Vector2i pos)
@@ -34,9 +40,17 @@ void Ball::setInitialPos(sf::Vector2i pos)
 void Ball::setLaunchVelocity(sf::Vector2i mouse)
 {
 	stroked = false;
+	trigger = false;
 	launchVelocity.x = initialMousePos.x - mouse.x;
 	launchVelocity.y = initialMousePos.y - mouse.y;
 	abs_velocity = sqrt(pow(launchVelocity.x, 2) + pow(launchVelocity.y, 2));
+
+	sf::Vector2f normalised = launchVelocity / abs_velocity;
+	float angle = atan2(normalised.y , normalised.x);
+	angle = angle * (180 / 3.1415);
+	pointer.setRotation(angle);
+	pointer.setPosition(ball.getPosition().x + size, ball.getPosition().y + size + 4);//+4 for adjusments
+
 	if (abs_velocity > 420) {
 		launchVelocity = copy_velocity;
 		return;
@@ -66,17 +80,15 @@ bool Ball::ballNotMoving(void)
 void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &hole, bool *level_complete, std::vector<sf::Sprite> blocks, int &currStrokes)
 {
 	if (!stroked) {	//initially true
+		launched = false;
 		currStrokes--;
-		stroked = true;
-	}
-
-	if (!launched) { //if ball is not launched and moving
+		if (currStrokes == 0)
+			trigger = true;
 		velocity = launchVelocity;
 		launchVelocity = sf::Vector2f(0.f, 0.f);
 		abs_velocity = 0;
 		meter_fg.setScale(abs_velocity / 200, 1.2);
-		launched = true;
-		return;
+		stroked = true;
 	}
 
 	//if ball is launched the update ball velocity
@@ -117,7 +129,6 @@ void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &h
 	
 	if (abs(int(velocity.x)) == 0 && abs(int(velocity.y)) == 0) {
 		velocity = sf::Vector2f(0.f, 0.f);
-		launched = false;
 		*init_set = true;
 	}
 	ball.setPosition(x, y);
@@ -135,6 +146,8 @@ void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &h
 
 void Ball::renderBall(sf::RenderWindow & app)
 {
+	if(!stroked)
+		app.draw(pointer);
 	app.draw(ball_sprite);
 	app.draw(meter_bg);
 	app.draw(meter_fg);

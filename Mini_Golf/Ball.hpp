@@ -13,8 +13,9 @@ private:
 	bool launched = false, stroked = true;
 public:
 	sf::CircleShape ball;
-	sf::Sprite ball_sprite, meter_bg, meter_fg, meter_ov;
-	sf::Texture ball_tex, meter_bg_tex, meter_fg_tex, meter_ov_tex;
+	sf::Sprite ball_sprite, meter_bg, meter_fg, meter_ov, pointer;
+	sf::Texture ball_tex, meter_bg_tex, meter_fg_tex, meter_ov_tex, pointer_tex;
+	bool trigger = false;
 
 	void init(sf::Vector2u app_size);
 	void setInitialPos(sf::Vector2i pos);
