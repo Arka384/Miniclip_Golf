@@ -41,9 +41,13 @@ void Ball::setLaunchVelocity(sf::Vector2i mouse)
 {
 	stroked = false;
 	trigger = false;
-	launchVelocity.x = initialMousePos.x - mouse.x;
-	launchVelocity.y = initialMousePos.y - mouse.y;
+	launchVelocity.x = (initialMousePos.x - mouse.x);
+	launchVelocity.y = (initialMousePos.y - mouse.y);
 	abs_velocity = sqrt(pow(launchVelocity.x, 2) + pow(launchVelocity.y, 2));
+
+	dirX = launchVelocity.x / abs(launchVelocity.x);
+	dirY = launchVelocity.y / abs(launchVelocity.y);
+	//std::cout << dirX << " " << dirY << "\n";
 
 	sf::Vector2f normalised = launchVelocity / abs_velocity;
 	float angle = atan2(normalised.y , normalised.x);
@@ -59,9 +63,10 @@ void Ball::setLaunchVelocity(sf::Vector2i mouse)
 	meter_fg.setScale(abs_velocity/200, 1.2);
 }
 
-void Ball::setBallVelocity(sf::Vector2i mouse)
+void Ball::setVelocity(float vx, float vy)
 {
-	velocity = launchVelocity;
+	velocity.x = vx;
+	velocity.y = vy;
 }
 
 bool Ball::mouseOnBall(sf::Vector2i mouse)
@@ -84,7 +89,7 @@ void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &h
 		currStrokes--;
 		if (currStrokes == 0)
 			trigger = true;
-		velocity = launchVelocity;
+		setVelocity(launchVelocity.x, launchVelocity.y);
 		launchVelocity = sf::Vector2f(0.f, 0.f);
 		abs_velocity = 0;
 		meter_fg.setScale(abs_velocity / 200, 1.2);
@@ -99,33 +104,42 @@ void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &h
 	if (x >= app_size.x - size*2) {
 		velocity.x = -velocity.x;
 		x = app_size.x - size*2;
+		dirX = -1;
 	} else if (x <= 0) {
 		velocity.x = -velocity.x;
 		x = 0;
+		dirX = 1;
 	}
 	if (y >= app_size.y - size*2) {
 		velocity.y = -velocity.y;
 		y = app_size.y - size*2;
+		dirY = -1;
 	} else if (y <= 0) {
 		velocity.y = -velocity.y;
 		y = 0;
+		dirY = 1;
 	}
 
 	//collision with blocks or tiles
 	for (int i = 0; i < blocks.size(); i++) {
-		float nx = x + velocity.x * dt;
-		if (nx + size*2 >= blocks[i].getPosition().x && nx <= blocks[i].getPosition().x + blocks[i].getGlobalBounds().width &
-			y + size * 2 >= blocks[i].getPosition().y && y <= blocks[i].getPosition().y + blocks[i].getGlobalBounds().height)
-			velocity.x = velocity.x * -1;
-		float ny = y + velocity.y * dt;
+		float nx = x + velocity.x * dt * 10;
+		if (nx + size * 2 >= blocks[i].getPosition().x && nx <= blocks[i].getPosition().x + blocks[i].getGlobalBounds().width &
+			y + size * 2 >= blocks[i].getPosition().y && y <= blocks[i].getPosition().y + blocks[i].getGlobalBounds().height) {
+			setVelocity(velocity.x*-1, velocity.y);
+			dirX *= -1;
+		}
+			
+		float ny = y + velocity.y * dt * 10;
 		if (x + size * 2 >= blocks[i].getPosition().x && x <= blocks[i].getPosition().x + blocks[i].getGlobalBounds().width &
-			ny + size * 2 >= blocks[i].getPosition().y && ny <= blocks[i].getPosition().y + blocks[i].getGlobalBounds().height)
-			velocity.y = velocity.y * -1;
+			ny + size * 2 >= blocks[i].getPosition().y && ny <= blocks[i].getPosition().y + blocks[i].getGlobalBounds().height) {
+			setVelocity(velocity.x, velocity.y*-1);
+			dirY *= -1;
+		}
+			
 	}
-
 	
-	velocity.x = velocity.x * f;
-	velocity.y = velocity.y * f;
+	velocity.x = abs(velocity.x) * f * dirX;
+	velocity.y = abs(velocity.y) * f * dirY;
 	
 	if (abs(int(velocity.x)) == 0 && abs(int(velocity.y)) == 0) {
 		velocity = sf::Vector2f(0.f, 0.f);

@@ -26,7 +26,7 @@ int main()
 	hole.setTexture(hole_tex);
 	hole.setScale(2, 2);
 	bool init_set = true, levelComplete = false;
-	int currentLevel = 1, maxStrokes = 2, currentStrokes = maxStrokes;
+	int currentLevel = 3, maxStrokes = 10, currentStrokes = maxStrokes;
 
 	Ball golfBall;
 	golfBall.init(app_size);
@@ -150,9 +150,9 @@ void loadLevel(int &currentLevel, sf::Sprite &hole, int &currentStrokes, Ball &b
 		currentStrokes = maxStrokes;
 		b.ball.setPosition(200, app_size.y / 2);
 		i = rand() % 2;
-		tiles64[i].setPosition(app_size.x / 2 - 32, app_size.y / 4 - 32);
+		tiles64[i].setPosition(app_size.x / 2 - 32, 0);
 		blocks.push_back(tiles64[i]);
-		tiles64[i].setPosition(app_size.x / 2 - 32, app_size.y - app_size.y / 4 - 32);
+		tiles64[i].setPosition(app_size.x / 2 - 32, app_size.y - 64);
 		blocks.push_back(tiles64[i]);
 		i = rand() % 2;
 		tiles32[i].setPosition(app_size.x / 2 - 16, app_size.y / 2 - 16);

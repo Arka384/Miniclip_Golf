@@ -11,6 +11,7 @@ private:
 	sf::Vector2f velocity = sf::Vector2f(0.f, 0.f), initialMousePos;
 	sf::Vector2f launchVelocity = sf::Vector2f(0.f, 0.f), copy_velocity;
 	bool launched = false, stroked = true;
+	int dirX = 1, dirY = 1;
 public:
 	sf::CircleShape ball;
 	sf::Sprite ball_sprite, meter_bg, meter_fg, meter_ov, pointer;
@@ -19,7 +20,7 @@ public:
 
 	void init(sf::Vector2u app_size);
 	void setInitialPos(sf::Vector2i pos);
-	void setBallVelocity(sf::Vector2i mouse);
+	void setVelocity(float vx, float vy);
 	void setLaunchVelocity(sf::Vector2i mouse);
 	bool mouseOnBall(sf::Vector2i mouse);
 	bool ballNotMoving(void);
