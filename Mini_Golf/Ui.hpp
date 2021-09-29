@@ -1,8 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-sf::Sprite bg, ui_bg, title, finished;
-sf::Texture bg_tex, ui_bg_tex, title_tex, finished_tex;
+sf::Sprite bg, ui_bg, title, finished, replay;
+sf::Texture bg_tex, ui_bg_tex, title_tex, finished_tex, replay_tex;
 
 sf::Font font;
 sf::Text meter, currLevelText, strokesLeftText;
@@ -28,6 +28,11 @@ void loadUi(sf::Vector2u app_size)
 	finished_tex.loadFromFile("Resources/sprites/finished.png");
 	finished.setTexture(finished_tex);
 
+	replay_tex.loadFromFile("Resources/sprites/replay.png");
+	replay.setTexture(replay_tex);
+	replay.setScale(0.8, 0.8);
+	replay.setPosition(app_size.x - 50, app_size.y);
+
 	//texts
 	meter.setFont(font);
 	meter.setCharacterSize(30.f);
@@ -41,13 +46,13 @@ void loadUi(sf::Vector2u app_size)
 	currLevelText.setStyle(sf::Text::Bold);
 	currLevelText.setFillColor(sf::Color::Black);
 	currLevelText.setString("Level:");
-	currLevelText.setPosition(app_size.x - currLevelText.getGlobalBounds().width - 50, app_size.y);
+	currLevelText.setPosition(app_size.x - currLevelText.getGlobalBounds().width - 120, app_size.y);
 
 	currLevel.setFont(font);
 	currLevel.setCharacterSize(30.f);
 	currLevel.setStyle(sf::Text::Bold);
 	currLevel.setFillColor(sf::Color::Black);
-	currLevel.setPosition(app_size.x - 40, app_size.y);
+	currLevel.setPosition(app_size.x - 110, app_size.y);
 
 	strokesLeftText.setFont(font);
 	strokesLeftText.setCharacterSize(30.f);
@@ -87,6 +92,7 @@ void renderUi(sf::RenderWindow &app, bool complete, int currStrokes, Ball b)
 	app.draw(strokesLeft);
 	app.draw(currLevelText);
 	app.draw(currLevel);
+	app.draw(replay);
 	if (complete) {
 		app.draw(levelCompleteText);
 	}

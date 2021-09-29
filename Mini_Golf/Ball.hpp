@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include <vector>
 #include <math.h>
@@ -16,6 +17,8 @@ public:
 	sf::CircleShape ball;
 	sf::Sprite ball_sprite, meter_bg, meter_fg, meter_ov, pointer;
 	sf::Texture ball_tex, meter_bg_tex, meter_fg_tex, meter_ov_tex, pointer_tex;
+	sf::Sound charge, holeS, swing;
+	sf::SoundBuffer chargebuff, holebuff, swingbuff;
 	bool trigger = false;
 
 	void init(sf::Vector2u app_size);

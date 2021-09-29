@@ -28,7 +28,13 @@ void Ball::init(sf::Vector2u app_size)
 	pointer.setTexture(pointer_tex);
 	pointer.setScale(2, 1.2);
 	pointer.setOrigin(pointer.getGlobalBounds().left, pointer.getGlobalBounds().height / 2);
-	//pointer.setPosition(ball.getPosition().x + size, ball.getPosition().y + size);
+
+	chargebuff.loadFromFile("Resources/Sounds/charge.wav");
+	charge.setBuffer(chargebuff);
+	swingbuff.loadFromFile("Resources/Sounds/swing.wav");
+	swing.setBuffer(swingbuff);
+	holebuff.loadFromFile("Resources/Sounds/hole.wav");
+	holeS.setBuffer(holebuff);
 }
 
 void Ball::setInitialPos(sf::Vector2i pos)
@@ -47,7 +53,6 @@ void Ball::setLaunchVelocity(sf::Vector2i mouse)
 
 	dirX = launchVelocity.x / abs(launchVelocity.x);
 	dirY = launchVelocity.y / abs(launchVelocity.y);
-	//std::cout << dirX << " " << dirY << "\n";
 
 	sf::Vector2f normalised = launchVelocity / abs_velocity;
 	float angle = atan2(normalised.y , normalised.x);
@@ -85,6 +90,7 @@ bool Ball::ballNotMoving(void)
 void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &hole, bool *level_complete, std::vector<sf::Sprite> blocks, int &currStrokes)
 {
 	if (!stroked) {	//initially true
+		swing.play();
 		launched = false;
 		currStrokes--;
 		if (currStrokes == 0)
@@ -99,7 +105,19 @@ void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &h
 	//if ball is launched the update ball velocity
 	float x = ball.getPosition().x + velocity.x*dt*10;
 	float y = ball.getPosition().y + velocity.y*dt*10;
-	
+
+	//if ball collides with hole
+	if (x >= hole.getPosition().x - 5 && x <= hole.getPosition().x + hole.getGlobalBounds().width + 5 &&
+		y >= hole.getPosition().y - 5 && y <= hole.getPosition().y + hole.getGlobalBounds().height + 5) {
+		holeS.play();
+		if (!*level_complete) {
+			velocity = sf::Vector2f(0.f, 0.f);
+			ball.setPosition(100, app_size.y / 2);
+			*level_complete = true;
+			return;
+		}
+	}
+		
 	//collision with walls
 	if (x >= app_size.x - size*2) {
 		velocity.x = -velocity.x;
@@ -147,15 +165,6 @@ void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &h
 	}
 	ball.setPosition(x, y);
 
-	if (x >= hole.getPosition().x - 5 && x <= hole.getPosition().x + hole.getGlobalBounds().width + 5 &&
-		y >= hole.getPosition().y - 5 && y <= hole.getPosition().y + hole.getGlobalBounds().height + 5) {
-		if (!*level_complete) {
-			velocity = sf::Vector2f(0.f, 0.f);
-			ball.setPosition(100, app_size.y / 2);
-			*level_complete = true;
-			return;
-		}
-	}
 }
 
 void Ball::renderBall(sf::RenderWindow & app)

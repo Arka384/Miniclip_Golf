@@ -6,8 +6,9 @@ sf::Sprite tiles32[2], tiles64[2];
 sf::Texture tiles[4];
 std::vector<sf::Sprite> blocks;
 
-void loadLevel(int &currentLevel, sf::Sprite &hole, int &currentStrokes, Ball &b, sf::Vector2u app_size, int maxStrokes);
+void loadLevel(int &currentLevel, sf::Sprite &hole, int &currentStrokes, Ball &b, sf::Vector2u app_size, int &maxStrokes);
 void loadTiles(void);
+bool replayButton(sf::Vector2i mousePos, bool mousePressed);
 
 int main()
 {
@@ -26,7 +27,7 @@ int main()
 	hole.setTexture(hole_tex);
 	hole.setScale(2, 2);
 	bool init_set = true, levelComplete = false;
-	int currentLevel = 6, maxStrokes = 10, currentStrokes = maxStrokes;
+	int currentLevel = 1, maxStrokes = 1, currentStrokes = maxStrokes;
 
 	Ball golfBall;
 	golfBall.init(app_size);
@@ -71,9 +72,14 @@ int main()
 		////////////////////////
 		if (!start_state && !finished_state) 
 		{
-			//std::cout << golfBall.test << "\n";
 			mousepos = sf::Mouse::getPosition(app);
 			golfBall.ball_sprite.setPosition(golfBall.ball.getPosition());
+
+			if (replayButton(mousepos, mousePressed)) {
+				golfBall.setVelocity(0.f, 0.f);
+				mousePressed = false;
+				loadLevel(currentLevel, hole, currentStrokes, golfBall, app_size, maxStrokes);
+			}
 
 			std::stringstream strokes, level;
 			strokes << currentStrokes;
@@ -89,20 +95,22 @@ int main()
 					levelComplete = false;
 					levelEndTimer = 0;
 					currentLevel++;
+					golfBall.ball_sprite.setScale(2, 2);
 					loadLevel(currentLevel, hole, currentStrokes, golfBall, app_size, maxStrokes);
 				}
 			}
-			//else if (currentStrokes == 0) {
 			else if(golfBall.trigger && golfBall.ballNotMoving()){
 				blocks.clear();	//clearing the tiles 
 				levelEndTimer += dt;
 				if (levelEndTimer > 4) {
 					levelEndTimer = 0;
+					golfBall.ball_sprite.setScale(2, 2);
 					loadLevel(currentLevel, hole, currentStrokes, golfBall, app_size, maxStrokes);
 				}
 			}
 			else if (!levelComplete) {
 				if (mousePressed && init_set) {	//setting initial mouse pos
+					golfBall.charge.play();
 					golfBall.setInitialPos(mousepos);
 					init_set = false;
 				}
@@ -132,7 +140,7 @@ int main()
 	}
 }
 
-void loadLevel(int &currentLevel, sf::Sprite &hole, int &currentStrokes, Ball &b, sf::Vector2u app_size, int maxStrokes)
+void loadLevel(int &currentLevel, sf::Sprite &hole, int &currentStrokes, Ball &b, sf::Vector2u app_size, int &maxStrokes)
 {
 	int i = 0;
 	b.trigger = false;
@@ -203,6 +211,8 @@ void loadLevel(int &currentLevel, sf::Sprite &hole, int &currentStrokes, Ball &b
 		blocks.push_back(tiles64[i]);
 		break;
 	case 6:
+		maxStrokes = 2;
+		currentStrokes = maxStrokes;
 		i = rand() % 2;
 		tiles32[i].setPosition(140, app_size.y / 2);
 		blocks.push_back(tiles32[i]);
@@ -290,5 +300,18 @@ void loadTiles(void)
 		tiles32[i].setTexture(tiles[i]);
 	for (int i = 2, j = 0; i < 4; i++, j++)
 		tiles64[j].setTexture(tiles[i]);
+}
+
+bool replayButton(sf::Vector2i mousePos, bool mousePressed)
+{
+	replay.setColor(sf::Color(255,255,255,255));
+	int hot = mousePos.x > replay.getPosition().x && mousePos.x < replay.getPosition().x + replay.getGlobalBounds().width &&
+		mousePos.y > replay.getPosition().y && mousePos.y < replay.getPosition().y + replay.getGlobalBounds().height;
+	if (hot)
+		replay.setColor(sf::Color(150, 0, 0, 255));
+	if (hot && mousePressed)
+		return true;
+	else
+		return false;
 }
 

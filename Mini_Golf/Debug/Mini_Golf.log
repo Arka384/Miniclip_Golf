@@ -1,5 +1,5 @@
 ﻿  main.cpp
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.hpp(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ball.hpp(11): warning C4305: 'initializing': truncation from 'double' to 'float'
 c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\ui.hpp(24): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
@@ -53,18 +53,13 @@ c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_g
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(125): warning C4018: '<': signed/unsigned mismatch
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(141): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(128): warning C4018: '<': signed/unsigned mismatch
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(144): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(154): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(156): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(157): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
@@ -74,12 +69,12 @@ c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_g
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(167): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(162): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(169): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(170): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
@@ -89,37 +84,37 @@ c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_g
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(174): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(175): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(178): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(177): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(180): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(181): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(182): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(183): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(186): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(185): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(188): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(189): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(190): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(191): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
@@ -129,12 +124,12 @@ c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_g
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(195): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(196): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(197): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(198): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
@@ -144,42 +139,42 @@ c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_g
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(202): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(203): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(207): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(205): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(209): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(210): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(211): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(212): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(213): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(214): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(215): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(216): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(217): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(218): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(219): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(220): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
@@ -189,62 +184,67 @@ c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_g
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(224): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(225): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(226): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(227): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(228): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(229): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(230): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(231): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(257): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(233): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(259): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(260): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(261): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(262): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(265): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(264): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(267): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(268): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(269): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(270): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(271): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(272): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(273): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(274): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+c:\users\arkad\documents\deadshot files\c++ programs\sfml\tests\mini_golf\mini_golf\main.cpp(276): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
