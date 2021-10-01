@@ -8,6 +8,10 @@ sf::Font font;
 sf::Text meter, currLevelText, strokesLeftText;
 sf::Text currLevel, strokesLeft;
 sf::Text  levelCompleteText, levelFailedText;
+sf::Text info[6];
+
+sf::Sound infoSound;
+sf::SoundBuffer infoSoundBuff;
 
 bool start_state = true, finished_state = false;
 
@@ -32,6 +36,10 @@ void loadUi(sf::Vector2u app_size)
 	replay.setTexture(replay_tex);
 	replay.setScale(0.8, 0.8);
 	replay.setPosition(app_size.x - 50, app_size.y);
+
+	//sounds
+	infoSoundBuff.loadFromFile("Resources/Sounds/select.wav");
+	infoSound.setBuffer(infoSoundBuff);
 
 	//texts
 	meter.setFont(font);
@@ -83,6 +91,19 @@ void loadUi(sf::Vector2u app_size)
 	levelFailedText.setPosition(300, app_size.y - 400);
 	levelFailedText.setRotation(-30.f);
 
+	info[0].setString("click and drag mouse to stroke the ball");
+	info[1].setString("look at the power meter before you stroke");
+	info[2].setString("to restart level click the replay button below");
+	info[3].setString("complete each levels with given number of strokes");
+	info[4].setString("..enter to continue..");
+	for (int i = 0; i < 5; i++) {
+		info[i].setFont(font);
+		info[i].setCharacterSize(50.f);
+		info[i].setStyle(sf::Text::Bold);
+		info[i].setFillColor(sf::Color::White);
+		info[i].setPosition(app_size.x / 2 - info[i].getGlobalBounds().width / 2, 100 + 50 * i);
+	}
+	info[4].setPosition(app_size.x / 2 - info[4].getGlobalBounds().width / 2, 340);
 }
 
 void renderUi(sf::RenderWindow &app, bool complete, int currStrokes, Ball b)

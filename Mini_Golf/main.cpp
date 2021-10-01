@@ -26,7 +26,7 @@ int main()
 	hole_tex.loadFromFile("Resources/sprites/hole.png");
 	hole.setTexture(hole_tex);
 	hole.setScale(2, 2);
-	bool init_set = true, levelComplete = false;
+	bool init_set = true, levelComplete = false, infoOn = true;
 	int currentLevel = 1, maxStrokes = 1, currentStrokes = maxStrokes;
 
 	Ball golfBall;
@@ -63,6 +63,11 @@ int main()
 			case sf::Event::KeyPressed:
 				if(e.key.code == sf::Keyboard::R)
 					golfBall.ball.setPosition(200, app_size.y / 2);
+				if (e.key.code == sf::Keyboard::Enter)
+					if (infoOn) {
+						infoOn = false;
+						infoSound.play();
+					}
 				break;
 			default:
 				break;
@@ -132,6 +137,11 @@ int main()
 			app.draw(hole);
 			for (int i = 0; i < blocks.size(); i++)
 				app.draw(blocks[i]);
+			if (infoOn) {
+				for (int i = 0; i < 5; i++)
+					app.draw(info[i]);
+			}
+			
 			golfBall.renderBall(app);
 		}
 		renderUi(app, levelComplete, currentStrokes, golfBall);
@@ -211,6 +221,56 @@ void loadLevel(int &currentLevel, sf::Sprite &hole, int &currentStrokes, Ball &b
 		blocks.push_back(tiles64[i]);
 		break;
 	case 6:
+		maxStrokes = 2;
+		currentStrokes = maxStrokes;
+		i = rand() % 2;
+		tiles64[i].setPosition(app_size.x / 2 - 32, 90);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x / 2 - 32, 170);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x / 2 - 32, 250);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x / 2 - 32, 330);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x / 2 - 32, 410);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x / 2 - 32, 490);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x / 2 - 32, 570);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x / 2 - 32, 650);
+		blocks.push_back(tiles64[i]);
+
+		i = rand() % 2;
+		tiles32[i].setPosition(160, app_size.y / 2 - 50);
+		blocks.push_back(tiles32[i]);
+		tiles32[i].setPosition(200, app_size.y / 2 - 50);
+		blocks.push_back(tiles32[i]);
+		tiles32[i].setPosition(240, app_size.y / 2 - 50);
+		blocks.push_back(tiles32[i]);
+
+		i = rand() % 2;
+		tiles64[i].setPosition(app_size.x - 460 - 32, 10);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x - 460 - 32, 80);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x - 460 - 32, 150);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x - 460 - 32, 220);
+		blocks.push_back(tiles64[i]);
+
+		i = rand() % 2;
+		tiles64[i].setPosition(app_size.x - 460 - 32, app_size.y - 70);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x - 460 - 32, app_size.y - 140);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x - 460 - 32, app_size.y - 210);
+		blocks.push_back(tiles64[i]);
+		tiles64[i].setPosition(app_size.x - 460 - 32, app_size.y - 280);
+		blocks.push_back(tiles64[i]);
+
+		break;
+	case 7:
 		maxStrokes = 2;
 		currentStrokes = maxStrokes;
 		i = rand() % 2;

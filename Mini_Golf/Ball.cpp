@@ -47,8 +47,8 @@ void Ball::setLaunchVelocity(sf::Vector2i mouse)
 {
 	stroked = false;
 	trigger = false;
-	launchVelocity.x = (initialMousePos.x - mouse.x);
-	launchVelocity.y = (initialMousePos.y - mouse.y);
+	launchVelocity.x = (initialMousePos.x - mouse.x)*2;
+	launchVelocity.y = (initialMousePos.y - mouse.y)*2;
 	abs_velocity = sqrt(pow(launchVelocity.x, 2) + pow(launchVelocity.y, 2));
 
 	dirX = launchVelocity.x / abs(launchVelocity.x);
