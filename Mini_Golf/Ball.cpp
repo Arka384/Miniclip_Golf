@@ -107,8 +107,8 @@ void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &h
 	float y = ball.getPosition().y + velocity.y*dt*10;
 
 	//if ball collides with hole
-	if (x >= hole.getPosition().x - 5 && x <= hole.getPosition().x + hole.getGlobalBounds().width + 5 &&
-		y >= hole.getPosition().y - 5 && y <= hole.getPosition().y + hole.getGlobalBounds().height + 5) {
+	if (x >= hole.getPosition().x && x <= hole.getPosition().x + hole.getGlobalBounds().width &&
+		y >= hole.getPosition().y && y <= hole.getPosition().y + hole.getGlobalBounds().height) {
 		holeS.play();
 		if (!*level_complete) {
 			velocity = sf::Vector2f(0.f, 0.f);

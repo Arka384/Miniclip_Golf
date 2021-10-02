@@ -80,7 +80,7 @@ void loadUi(sf::Vector2u app_size)
 	levelCompleteText.setStyle(sf::Text::Bold);
 	levelCompleteText.setFillColor(sf::Color::White);
 	levelCompleteText.setString("Level Complete");
-	levelCompleteText.setPosition(200, app_size.y - 300);
+	levelCompleteText.setPosition(200, app_size.y - 200);
 	levelCompleteText.setRotation(-30.f);
 
 	levelFailedText.setFont(font);
