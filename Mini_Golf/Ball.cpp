@@ -156,8 +156,8 @@ void Ball::update(float dt, sf::Vector2u app_size, bool *init_set, sf::Sprite &h
 			
 	}
 	
-	velocity.x = abs(velocity.x) * f * dirX;
-	velocity.y = abs(velocity.y) * f * dirY;
+	velocity.x = abs(velocity.x) * dirX * dt * 58;
+	velocity.y = abs(velocity.y) * dirY * dt * 58;
 	
 	if (abs(int(velocity.x)) == 0 && abs(int(velocity.y)) == 0) {
 		velocity = sf::Vector2f(0.f, 0.f);

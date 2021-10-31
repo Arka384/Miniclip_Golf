@@ -27,7 +27,7 @@ int main()
 	hole.setTexture(hole_tex);
 	hole.setScale(2, 2);
 	bool init_set = true, levelComplete = false, infoOn = true;
-	int currentLevel = 7, maxStrokes = 1, currentStrokes = maxStrokes;
+	int currentLevel = 1, maxStrokes = 1, currentStrokes = maxStrokes;
 
 	Ball golfBall;
 	golfBall.init(app_size);
@@ -37,6 +37,8 @@ int main()
 	loadLevel(currentLevel, hole, currentStrokes, golfBall, app_size, maxStrokes);
 	//ui
 	loadUi(app_size);
+
+	app.setVerticalSyncEnabled(true);
 
 	while (app.isOpen())
 	{
